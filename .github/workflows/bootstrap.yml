@@ -1,0 +1,23 @@
+name: bootstrap CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04  # Test with 22.04 for now, due to open autoproj issues in Ubuntu 24.04
+    steps:
+    # - uses: actions/checkout@v4  ## no need to checkout, this is done by autoproj_bootstrap
+    - name: Install dependencies
+      run: sudo apt-get -y update && sudo apt-get -y install wget ruby-dev ssh git sudo build-essential
+      shell: bash
+    - name: bootstrap_buildconf
+      run: |
+        wget http://rock-robotics.org/master/autoproj_bootstrap
+        # Todo: Pass branch of packageset in case of PRs. This argument would only set the branch of the buildconf: branch=${{ github.head_ref }}
+        ruby autoproj_bootstrap --no-interactive git https://github.com/dfki-ric/ros2-buildconf
+        source env.sh && autoproj update --no-interactive
+
