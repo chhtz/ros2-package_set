@@ -13,7 +13,7 @@ jobs:
     # - uses: actions/checkout@v4  ## no need to checkout, this is done by autoproj_bootstrap
     - name: Install dependencies
       run: |
-        sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install wget ruby-dev ssh git sudo build-essential
+        sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install wget ruby-dev ssh git sudo build-essential libunwind-dev
         git config --global user.name "GitHub runner" && git config --global user.email "runner@github.com"
       shell: bash
     - name: bootstrap_buildconf
