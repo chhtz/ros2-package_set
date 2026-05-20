@@ -1,0 +1,28 @@
+<package>
+  <description brief="OctoMap generation for SLAM3D mapper.">
+    Creates an OctoMap from PoincloudMeasurements.
+  </description>
+  <author email="sebastian.kasperski@dfki.de">Sebastian Kasperski</author>
+  <maintainer email="sebastian.kasperski@dfki.de">Sebastian Kasperski</maintainer>
+  <license>New BSD</license>
+
+  <depend package="slam3d" />
+  <depend package="octomap" />
+
+  <keywords>
+    <keyword>Mapping</keyword>
+  </keywords>
+
+  <stage>1</stage>
+  <use>multi project</use>
+  <activity>active</activity>
+
+  <classifiers>
+    <classifier>c++</classifier>
+    <classifier>library</classifier>
+  </classifiers>
+
+  <tags>stable</tags>
+
+</package>
+ 
