@@ -17,6 +17,9 @@ version_control:
   - slam3d:
     github: dfki-ric/slam3d
 
+  - slam3d_octomap:
+    github: dfki-ric/slam3d_octomap
+
   - slam3d_ros2:
     github: dfki-ric/slam3d_ros2
 
