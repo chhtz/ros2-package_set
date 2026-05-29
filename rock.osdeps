@@ -17,3 +17,9 @@ external/tinyxml:
     ubuntu: libtinyxml-dev
 
 qt4: ignore
+
+restcpp:
+    ubuntu: libcpprest-dev
+
+websocketpp:
+    ubuntu: libwebsocketpp-dev
