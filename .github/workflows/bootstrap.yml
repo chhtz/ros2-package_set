@@ -11,7 +11,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04, ubuntu-24.04]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
+    env:
+      SET_BUNDLER_VERSION: |-
+        ${{ case(
+          matrix.os  == 'ubuntu-24.04', '--bundler-version="2.7.2"',
+          ''
+        ) }}
     steps:
     # - uses: actions/checkout@v4  ## no need to checkout, this is done by autoproj_bootstrap
     - name: Install dependencies
@@ -25,6 +32,6 @@ jobs:
         # Use autoproj_bootstrap-dev to make it also work with Ubuntu 24.04
         wget https://rock-robotics.org/autoproj_bootstrap-dev
         # Todo: Pass branch of packageset in case of PRs. This argument would only set the branch of the buildconf: branch=${{ github.head_ref }}
-        ruby autoproj_bootstrap-dev --no-interactive git https://github.com/dfki-ric/ros2-buildconf
+        ruby autoproj_bootstrap-dev $SET_BUNDLER_VERSION --no-interactive git https://github.com/dfki-ric/ros2-buildconf
         source env.sh && autoproj update --no-interactive
 
