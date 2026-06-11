@@ -16,7 +16,7 @@ jobs:
     env:
       SET_BUNDLER_VERSION: |-
         ${{ case(
-          matrix.os  == 'ubuntu-24.04', '--bundler-version="2.7.2"',
+          matrix.os  == 'ubuntu-24.04', '--bundler-version=2.7.2',
           ''
         ) }}
     steps:
