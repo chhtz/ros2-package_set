@@ -41,8 +41,8 @@ jobs:
         patch-syntax: |
           # Use full path from root: /spec/image/tag (not /image/tag)
           + /0 =>  "pkg_set:github:/rock-core/package_set.git"
-          + /0 => branch
-          + /0/branch => master
+#          + /0 => branch
+#          + /0/branch => master
     - name: update
       run: |
         cat autoproj/overrides.d/merge-requests.yml
