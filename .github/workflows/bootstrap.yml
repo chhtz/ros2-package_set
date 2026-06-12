@@ -33,14 +33,11 @@ jobs:
         wget https://rock-robotics.org/autoproj_bootstrap-dev
         # Todo: Pass branch of packageset in case of PRs. This argument would only set the branch of the buildconf: branch=${{ github.head_ref }}
         ruby autoproj_bootstrap-dev $SET_BUNDLER_VERSION --no-interactive git https://github.com/dfki-ric/ros2-buildconf
-        pwd
-        ls
-        ls autoproj
     - name: Patch override.yaml
       uses: onlyutkarsh/patch-files-action@v1
       with:
         files: |
-          autoproj/overrides.d/merge-requests.yml
+          autoproj/overrides.d/merge_requests.yml
         patch-syntax: |
           # Use full path from root: /spec/image/tag (not /image/tag)
           + /0 =>  "pkg_set:github:/rock-core/package_set.git"
@@ -48,6 +45,6 @@ jobs:
 #          + /0/branch => master
     - name: update
       run: |
-        cat autoproj/overrides.d/merge-requests.yml
+        cat autoproj/overrides.d/merge_requests.yml
         # source env.sh && autoproj update --no-interactive
 
