@@ -3,6 +3,8 @@ require_relative "./lib/colcon_package.rb"
 require_relative "./lib/colcon_import_package.rb"
 require_relative "./lib/rosdep_import.rb"
 
+puts "\n\n    PULL REQUEST TEST\n\n"
+
 
 if (!Autoproj.config.has_value_for?("ROS_DISTRO")) then
     # if ROS_DISTRO is set in the env, e.g. by sourcing the setup.bash, use that version
