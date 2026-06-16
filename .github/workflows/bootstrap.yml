@@ -40,7 +40,7 @@ jobs:
       run: |
         cd autoproj/remotes/ros2
         git config pull.rebase false
-        git pull -X theirs ${{ github.head_ref }}
+        git pull -X theirs ${{ github.ref }}
     - name: update
       run: |
         pwd
