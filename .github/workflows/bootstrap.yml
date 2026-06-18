@@ -31,12 +31,11 @@ jobs:
         # wget http://rock-robotics.org/master/autoproj_bootstrap
         # Use autoproj_bootstrap-dev to make it also work with Ubuntu 24.04
         wget https://rock-robotics.org/autoproj_bootstrap-dev
-        # Todo: Pass branch of packageset in case of PRs. This argument would only set the branch of the buildconf: branch=${{ github.head_ref }}
         ruby autoproj_bootstrap-dev $SET_BUNDLER_VERSION --no-interactive git https://github.com/dfki-ric/ros2-buildconf
         # Check out packageset and configure variables
         . env.sh && aup --config --no-interactive
     - name: Checkout branch of packageset
-      # if: TODO only if run on PR
+      if: ${{ github.event_name == 'pull_request' }}
       run: | 
         cd autoproj/remotes/ros2
         git config pull.rebase false
