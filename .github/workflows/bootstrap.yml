@@ -37,14 +37,11 @@ jobs:
         . env.sh && aup --config --no-interactive
     - name: Checkout branch of packageset
       # if: TODO only if run on PR
-      uses: actions/checkout@v6
-      with:
-        path: autoproj/remotes/ros2
-        fetch-depth: 0
-      #run: |
-      #  cd autoproj/remotes/ros2
-      #  git config pull.rebase false
-      #  git pull -X theirs ${{github.repositoryUrl }} ${{ github.ref }}
+      run: | 
+        cd autoproj/remotes/ros2
+        git config pull.rebase false
+        git remote add PR ${{github.repositoryUrl }}
+        git pull -X theirs PR ${{ github.ref }}
     - name: update
       run: |
         source env.sh && autoproj update --no-interactive
