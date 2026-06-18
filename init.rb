@@ -1,4 +1,4 @@
-puts "\n\n    PULL REQUEST TEST2 -- updated \n\n"
+puts "\n\n    PULL REQUEST TEST2 -- updated again \n\n"
 
 require_relative "./lib/colcon_package.rb"
 require_relative "./lib/colcon_import_package.rb"
