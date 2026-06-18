@@ -40,7 +40,7 @@ jobs:
       run: | 
         cd autoproj/remotes/ros2
         git config pull.rebase false
-        git remote add PR ${{github.repositoryUrl }}
+        git remote add PR ${{ github.server_url }}/${{github.repository }}
         git pull -X theirs PR ${{ github.ref }}
     - name: update
       run: |
