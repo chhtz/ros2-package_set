@@ -31,7 +31,7 @@ jobs:
         wget http://rock-robotics.org/master/autoproj_bootstrap
         ## Use autoproj_bootstrap-dev to make it also work with Ubuntu 24.04
         # wget https://rock-robotics.org/autoproj_bootstrap-dev
-        ruby autoproj_bootstrap-dev --no-interactive git https://github.com/dfki-ric/ros2-buildconf
+        ruby autoproj_bootstrap --no-interactive git https://github.com/dfki-ric/ros2-buildconf
         # Check out packageset and configure variables
         . env.sh && aup --config --no-interactive
     - name: Checkout branch of packageset
