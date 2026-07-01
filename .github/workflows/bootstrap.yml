@@ -28,7 +28,8 @@ jobs:
       shell: bash
     - name: bootstrap_buildconf
       run: |
-        wget http://rock-robotics.org/master/autoproj_bootstrap
+        # wget http://rock-robotics.org/master/autoproj_bootstrap
+        wget https://github.com/rock-core/autoproj/raw/refs/heads/master/bin/autoproj_bootstrap
         ## Use autoproj_bootstrap-dev to make it also work with Ubuntu 24.04
         # wget https://rock-robotics.org/autoproj_bootstrap-dev
         ruby autoproj_bootstrap --no-interactive git https://github.com/dfki-ric/ros2-buildconf
