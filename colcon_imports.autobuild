@@ -23,9 +23,12 @@ colcon_import_package "gui/vizkit3d_debug_drawings" do |pkg|
     pkg.add_cmake_arg("-DWITH_PORTS=OFF" )
 end
 colcon_import_package "control/trajectory_follower"
+
 colcon_import_package "slam/maps" do |pkg| 
     pkg.use_optional_dependency "gui/vizkit3d"
 end
+colcon_import_package "slam/slam3d_databases"
+
 colcon_import_package "gui/vizkit3d"
 colcon_import_package "gui/osgviz"
 

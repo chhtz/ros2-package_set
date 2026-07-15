@@ -23,6 +23,9 @@ version_control:
   - slam3d_ros2:
     github: dfki-ric/slam3d_ros2
 
+  - slam/slam3d_databases:
+    github: dfki-ric/slam3d_databases
+
   - base/cmake:
     github: rock-core/base-cmake
     patches:
