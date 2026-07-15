@@ -9,8 +9,7 @@ colcon_package "pointmatcher", move_to: "slam" do |pkg|
     pkg.depends_on "nabo"
 end
 
-import_package "slam3d"
-move_package "slam3d", "slam"
+colcon_import_package "slam/slam3d", libname: "slam3d"
 import_package "slam3d_octomap"
 move_package "slam3d_octomap", "slam"
 
