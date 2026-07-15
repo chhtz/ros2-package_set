@@ -14,7 +14,7 @@ version_control:
   - pointmatcher:
     github: norlab-ulaval/libpointmatcher
 
-  - slam3d:
+  - slam/slam3d:
     github: dfki-ric/slam3d
 
   - slam3d_octomap:
