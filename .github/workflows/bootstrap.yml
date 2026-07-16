@@ -47,7 +47,7 @@ jobs:
         path: ${{ github.workspace }}/.ccache
         key: ${{ matrix.os }}-ccache-${{ github.run_id }}
         restore-keys: |
-          ${{ runner.os }}-ccache-
+          ${{ matrix.os }}-ccache-
 
     - name: Configure ccache
       run: |
