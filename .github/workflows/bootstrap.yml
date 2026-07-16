@@ -51,7 +51,7 @@ jobs:
 
     - name: Configure ccache
       run: |
-          ccache --max-size=2000M
+          ccache --max-size=1G
           ccache --set-config=compression=true
 
     - name: Build
