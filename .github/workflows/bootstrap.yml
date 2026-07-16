@@ -13,25 +13,26 @@ jobs:
         os: [ubuntu-22.04, ubuntu-24.04]
       fail-fast: false
     runs-on: ${{ matrix.os }}
-    env:
-      SET_BUNDLER_VERSION: |-
-        ${{ case(
-          matrix.os  == 'ubuntu-24.04', '--bundler-version=2.7.2',
-          ''
-        ) }}
     steps:
     # - uses: actions/checkout@v4  ## no need to checkout, this is done by autoproj_bootstrap
     - name: Install dependencies
       run: |
-        sudo apt-get -y update && sudo apt-get -y upgrade && sudo apt-get -y install wget ruby-dev ssh git sudo build-essential libunwind-dev
+        sudo apt-get -y update && sudo apt-get -y install wget ruby-dev ssh git sudo build-essential libunwind-dev
         git config --global user.name "GitHub runner" && git config --global user.email "runner@github.com"
       shell: bash
     - name: bootstrap_buildconf
       run: |
-        # wget http://rock-robotics.org/master/autoproj_bootstrap
-        # Use autoproj_bootstrap-dev to make it also work with Ubuntu 24.04
-        wget https://rock-robotics.org/autoproj_bootstrap-dev
-        # Todo: Pass branch of packageset in case of PRs. This argument would only set the branch of the buildconf: branch=${{ github.head_ref }}
-        ruby autoproj_bootstrap-dev $SET_BUNDLER_VERSION --no-interactive git https://github.com/dfki-ric/ros2-buildconf
+        wget https://rock-robotics.org/autoproj_bootstrap
+        ruby autoproj_bootstrap --no-interactive git https://github.com/dfki-ric/ros2-buildconf
+        # Check out packageset and configure variables
+        . env.sh && aup --config --no-interactive
+    - name: Checkout branch of packageset
+      if: ${{ github.event_name == 'pull_request' }}
+      run: | 
+        cd autoproj/remotes/ros2
+        git config pull.rebase false
+        git remote add PR ${{ github.server_url }}/${{github.repository }}
+        git pull -X theirs PR ${{ github.ref }}
+    - name: update
+      run: |
         source env.sh && autoproj update --no-interactive
-
