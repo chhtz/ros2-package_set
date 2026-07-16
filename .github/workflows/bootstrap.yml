@@ -45,7 +45,7 @@ jobs:
       uses: actions/cache/restore@v4
       with:
         path: ${{ github.workspace }}/.ccache
-        key: ${{ runner.os }}-ccache-${{ github.run_id }}
+        key: ${{ matrix.os }}-ccache-${{ github.run_id }}
         restore-keys: |
           ${{ runner.os }}-ccache-
 
