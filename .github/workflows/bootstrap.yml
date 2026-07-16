@@ -37,16 +37,14 @@ jobs:
       run: |
         source env.sh && autoproj update --no-interactive
 
-    - name: Prepare ccache timestamp
-      id: ccache_cache_timestamp
-      run: echo "timestamp=$(date +'%Y-%m-%d-%H;%M;%S')" >> $GITHUB_OUTPUT
-    - name: Cache ccache files
-      uses: actions/cache@v4
+    - name: Restore ccache
+      id: ccache-restore
+      uses: actions/cache/restore@v4
       with:
-          path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
-          restore-keys: |
-            ${{ runner.os }}-ccache-
+        path: ~/.ccache
+        key: ${{ runner.os }}-ccache-${{ github.run_id }}
+        restore-keys: |
+          ${{ runner.os }}-ccache-
 
     - name: Configure ccache
       run: |
@@ -59,5 +57,11 @@ jobs:
           colcon build --cmake-args "-DCMAKE_C_COMPILER_LAUNCHER=ccache" "-DCMAKE_CXX_COMPILER_LAUNCHER=ccache" "-DCMAKE_BUILD_TYPE=Release"
 
     - name: Show ccache stats
-      if: ${{ !cancelled() }}
+      if: always()
       run: ccache -sv
+    - name: Save ccache
+      if: always()
+      uses: actions/cache/save@v4
+      with:
+        path: ~/.ccache
+        key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
