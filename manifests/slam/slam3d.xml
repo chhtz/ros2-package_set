@@ -10,7 +10,7 @@
   <depend package="libpcl-all" />
   <depend package="libg2o" />
   <depend package="pclomp" optional="1" />
-  <depend package="pointmatcher" optional="1" />
+  <depend package="libpointmatcher" optional="1" />
   <depend package="suitesparse" />
   <depend package="jsoncpp" />
   <depend package="flann" />
